@@ -22,53 +22,53 @@
     android:layout_alignParentStart="true"
     android:textSize="18dp"/>
 
-  <RadioButton
-    android:text="Gwen Stacy"
+  <RadioGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="46dp"
-    android:id="@+id/choice1"
     android:layout_below="@+id/questionTextView"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"/>
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="70dp"
+    android:id="@+id/choices">
 
-  <RadioButton
-    android:text="Mary Jane"
+    <RadioButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/choice1"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="34dp"
-    android:id="@+id/choice2"/>
+    android:layout_marginBottom="15sp"
+    android:id="@+id/choice1"
+    android:text="Gwen Stacy" />
 
-  <RadioButton
-    android:text="Liz Allan"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/choice2"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="34dp"
-    android:id="@+id/choice3"/>
+    <RadioButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="15sp"
+      android:id="@+id/choice2"
+      android:text="Mary Jane" />
 
-  <RadioButton
-    android:text="Felicia Hardy"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/choice3"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="34dp"
-    android:id="@+id/choice4"/>
+    <RadioButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="15sp"
+      android:id="@+id/choice3"
+      android:text="Liz Allan" />
+
+    <RadioButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="15sp"
+      android:id="@+id/choice4"
+      android:text="Felicia Hardy" />
+
+
+  </RadioGroup>
 
   <Button
     android:text="Submit"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="25dp"
     android:id="@+id/submitButton"
-    android:layout_below="@+id/choice4"
+    android:layout_marginBottom="24dp"
+    android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
