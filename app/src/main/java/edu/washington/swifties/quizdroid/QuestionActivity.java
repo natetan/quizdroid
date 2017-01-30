@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class QuestionActivity extends Activity {
   private RadioGroup choices;
-  private RadioButton choice1, choice2, choice3, choice4;
   private TextView questionTextView;
   private Button submitButton;
   private int answerSelected = -1;
@@ -29,16 +28,12 @@ public class QuestionActivity extends Activity {
       public void onCheckedChanged(RadioGroup radioGroup, int i) {
         submitButton.setVisibility(View.VISIBLE);
         answerSelected = i;
+        // Gets the id of the RadioButton selected
+        int id = choices.getCheckedRadioButtonId();
+        // Gets the actual radio button that is clicked (so we can grab text)
+        RadioButton rb = (RadioButton) findViewById(id);
       }
     });
-
-    RadioButton[] rbs = {choice1, choice2, choice3, choice4};
-    int[] ids = {R.id.choice1, R.id.choice2, R.id.choice3, R.id.choice4};
-
-    for (int i = 0; i < rbs.length; i++) {
-      rbs[i] = (RadioButton) findViewById(ids[i]);
-
-    }
 
     submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
