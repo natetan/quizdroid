@@ -9,5 +9,8 @@ public class QuizActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_quiz);
+
+    String subject = getIntent().getStringExtra("SUBJECT");
+    String desc = getIntent().getStringExtra("DESC");
   }
 }

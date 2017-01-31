@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
         intent.putExtra("SUBJECT", (String) adapterView.getItemAtPosition(i));
         intent.putExtra("DESC", desc[i]);
         startActivity(intent);
