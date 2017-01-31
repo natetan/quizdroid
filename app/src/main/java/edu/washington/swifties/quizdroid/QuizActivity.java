@@ -1,9 +1,14 @@
 package edu.washington.swifties.quizdroid;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.TextView;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends Activity {
+  private FragmentTransaction tx = getFragmentManager().beginTransaction();
+  private Fragment display = null;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -12,5 +17,13 @@ public class QuizActivity extends AppCompatActivity {
 
     String subject = getIntent().getStringExtra("SUBJECT");
     String desc = getIntent().getStringExtra("DESC");
+
+    TextView subjectTextView = (TextView) findViewById(R.id.subjectTextView);
+    subjectTextView.setText(subject);
+
+    // Testing initial frag swap
+    display = new DescFragment();
+    tx.replace(R.id.fragment_placeholder, display);
+    tx.commit();
   }
 }
