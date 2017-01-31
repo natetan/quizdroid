@@ -11,13 +11,24 @@
   android:paddingTop="@dimen/activity_vertical_margin"
   tools:context="edu.washington.swifties.quizdroid.QuizActivity">
 
+  <TextView
+    android:text="subjectTextViewTest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/textViewSUB"
+    android:textAlignment="center"
+    android:textSize="18sp"/>
+
   <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
+    android:layout_below="@+id/textViewSUB"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
-    android:id="@+id/frame_placeholder">
+    android:layout_marginTop="15dp"
+    android:id="@+id/fragment_placeholder">
 
   </FrameLayout>
 </RelativeLayout>
