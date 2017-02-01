@@ -2,7 +2,7 @@ package edu.washington.swifties.quizdroid;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,16 +31,16 @@ public class QuestionFragment extends Fragment {
     // Inflate the layout for this fragment
     final View view = inflater.inflate(R.layout.fragment_question, container, false);
 
-    submitButton = (Button) view.findViewById(R.id.submitButtonf);
+    submitButton = (Button) view.findViewById(R.id.submitButton);
     submitButton.setVisibility(View.INVISIBLE);
     submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-
+        questionTextView.setText("Testing button click");
       }
     });
 
-    choices = (RadioGroup) view.findViewById(R.id.choicesf);
+    choices = (RadioGroup) view.findViewById(R.id.choices);
     choices.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(RadioGroup radioGroup, int i) {

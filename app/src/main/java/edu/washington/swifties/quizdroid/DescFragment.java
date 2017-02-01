@@ -1,6 +1,8 @@
 package edu.washington.swifties.quizdroid;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +18,9 @@ import android.widget.TextView;
 public class DescFragment extends Fragment {
   private Button beginButton;
   private TextView descTextView;
+
+  //private FragmentTransaction tx = getFragmentManager().beginTransaction();
+  private Fragment display = null;
 
 
   public DescFragment() {
@@ -36,7 +41,12 @@ public class DescFragment extends Fragment {
     beginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        descTextView.setText("Button was clicked for testing purposes");
+        Fragment next = new QuestionFragment();
+        FragmentManager fm = getActivity().getFragmentManager();
+        FragmentTransaction tx = fm.beginTransaction();
+        tx.replace(R.id.fragment_placeholder, next);
+        tx.addToBackStack(null);
+        tx.commit();
       }
     });
 
