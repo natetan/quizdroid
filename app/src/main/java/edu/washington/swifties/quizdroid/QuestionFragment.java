@@ -1,6 +1,8 @@
 package edu.washington.swifties.quizdroid;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +21,9 @@ public class QuestionFragment extends Fragment {
   private RadioGroup choices;
   private TextView questionTextView;
   private Button submitButton;
+  private String selectedAnswer;
+
+  public static final String SELECTED_ANSWER = "selected_answer";
 
   public QuestionFragment() {
     // Required empty public constructor
@@ -36,7 +41,17 @@ public class QuestionFragment extends Fragment {
     submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        questionTextView.setText("Testing button click");
+        Fragment next = new AnswerFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(SELECTED_ANSWER, selectedAnswer);
+        next.setArguments(bundle);
+
+        FragmentManager fm = getActivity().getFragmentManager();
+        FragmentTransaction tx = fm.beginTransaction();
+        tx.replace(R.id.fragment_placeholder, next);
+        tx.addToBackStack(null);
+        tx.commit();
       }
     });
 
@@ -49,6 +64,7 @@ public class QuestionFragment extends Fragment {
         int id = choices.getCheckedRadioButtonId();
         // Gets the actual radio button that is clicked (so we can grab text)
         RadioButton rb = (RadioButton) view.findViewById(id);
+        selectedAnswer = rb.getText().toString();
       }
     });
 
