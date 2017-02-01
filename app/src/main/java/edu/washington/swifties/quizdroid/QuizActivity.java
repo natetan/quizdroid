@@ -21,8 +21,10 @@ public class QuizActivity extends Activity {
     TextView subjectTextView = (TextView) findViewById(R.id.subjectTextView);
     subjectTextView.setText(subject);
 
-    // Testing initial frag swap
     display = new DescFragment();
+    Bundle bundle = new Bundle();
+    bundle.putString("DESC", desc);
+    display.setArguments(bundle);
     tx.replace(R.id.fragment_placeholder, display);
     tx.commit();
   }

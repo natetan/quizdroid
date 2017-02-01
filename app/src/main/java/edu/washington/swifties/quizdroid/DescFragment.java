@@ -29,6 +29,9 @@ public class DescFragment extends Fragment {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_desc, container, false);
 
+    // Use this for data transfer
+    String desc = getArguments().getString("DESC");
+
     beginButton = (Button) view.findViewById(R.id.beginButton);
     beginButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -38,9 +41,7 @@ public class DescFragment extends Fragment {
     });
 
     descTextView = (TextView) view.findViewById(R.id.descTextView);
-    descTextView.setText("Testing testing testing");
-
+    descTextView.setText(desc);
     return view;
   }
-
 }
