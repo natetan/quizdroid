@@ -9,25 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends Activity {
-
-  private String[] subjects = {
-      "Math", "Physics", "Marvel Superheroes"
-  };
-
-  private String[] desc = {
-    "Do you find yourself better at math than your peers? Do you know what the absolute value of 2 is? This may just be the quiz for you!",
-      "Velocity, acceleration, force! What do these words mean? Maybe you can answer them!",
-      "What is Iron Man's secret identity? Who is Spider-Man's crime-fighting partner and lover? Test your Marvel comics knowledge!"
-  };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    QuizApp app = new QuizApp();
+    TopicRepository repo = new TopicRepository();
+    final List<Topic> topics = repo.getTopics();
+
     final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        android.R.layout.simple_list_item_1, subjects);
+        android.R.layout.simple_list_item_1, repo.getSubjects());
 
     ListView listView = (ListView) findViewById(R.id.listView);
     listView.setAdapter(adapter);
@@ -37,7 +33,7 @@ public class MainActivity extends Activity {
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(MainActivity.this, QuizActivity.class);
         intent.putExtra("SUBJECT", (String) adapterView.getItemAtPosition(i));
-        intent.putExtra("DESC", desc[i]);
+        intent.putExtra("DESC", topics.get(i).getLongDesc());
         startActivity(intent);
       }
     });
