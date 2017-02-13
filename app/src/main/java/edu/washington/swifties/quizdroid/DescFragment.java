@@ -35,13 +35,30 @@ public class DescFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_desc, container, false);
 
     // Use this for data transfer
-    String desc = getArguments().getString("DESC");
+    String desc = getArguments().getString(MainActivity.DESC);
+
+    final String question = getArguments().getString(MainActivity.QUESTION);
+    final String answer1 = getArguments().getString(MainActivity.ANSWER_1);
+    final String answer2 = getArguments().getString(MainActivity.ANSWER_2);
+    final String answer3 = getArguments().getString(MainActivity.ANSWER_3);
+    final String answer4 = getArguments().getString(MainActivity.ANSWER_4);
+    final int rightAnswer = getArguments().getInt(MainActivity.CORRECT_ANSWER);
 
     beginButton = (Button) view.findViewById(R.id.beginButton);
     beginButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        Bundle bundle = new Bundle();
+
+        bundle.putString(MainActivity.QUESTION, question);
+        bundle.putString(MainActivity.ANSWER_1, answer1);
+        bundle.putString(MainActivity.ANSWER_2, answer2);
+        bundle.putString(MainActivity.ANSWER_3, answer3);
+        bundle.putString(MainActivity.ANSWER_4, answer4);
+        bundle.putInt(MainActivity.CORRECT_ANSWER, rightAnswer);
+
         Fragment next = new QuestionFragment();
+        next.setArguments(bundle);
         FragmentManager fm = getActivity().getFragmentManager();
         FragmentTransaction tx = fm.beginTransaction();
         tx.replace(R.id.fragment_placeholder, next);

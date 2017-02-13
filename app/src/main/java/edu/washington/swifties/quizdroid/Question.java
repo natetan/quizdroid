@@ -32,9 +32,10 @@ public class Question {
     this.question = question;
   }
 
+  // 0 base indexing
   public String getAnswer(int num) {
-    if (num < 1 || num > 4) {
-      throw new IllegalArgumentException("Number must be between 1 and 4, both inclusive");
+    if (num < 0 || num > 3) {
+      throw new IllegalArgumentException("Number must be between 0 and 3, both inclusive");
     }
     return this.answersList.get(num);
   }

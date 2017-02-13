@@ -44,12 +44,12 @@ public class MainActivity extends Activity {
         intent.putExtra(SUBJECT, (String) adapterView.getItemAtPosition(i));
         intent.putExtra(DESC, topics.get(i).getLongDesc());
 
-        intent.putExtra(QUESTION, topics.get(i).getQuestions().get(i).getQuestion());
-        intent.putExtra(ANSWER_1, topics.get(i).getQuestions().get(i).getAnswer(0));
-        intent.putExtra(ANSWER_2, topics.get(i).getQuestions().get(i).getAnswer(1));
-        intent.putExtra(ANSWER_3, topics.get(i).getQuestions().get(i).getAnswer(2));
-        intent.putExtra(ANSWER_4, topics.get(i).getQuestions().get(i).getAnswer(3));
-        intent.putExtra(CORRECT_ANSWER, topics.get(i).getQuestions().get(i).getRightAnswer());
+        intent.putExtra(QUESTION, topics.get(i).getQuestions().get(0).getQuestion());
+        intent.putExtra(ANSWER_1, topics.get(i).getQuestions().get(0).getAnswer(0));
+        intent.putExtra(ANSWER_2, topics.get(i).getQuestions().get(0).getAnswer(1));
+        intent.putExtra(ANSWER_3, topics.get(i).getQuestions().get(0).getAnswer(2));
+        intent.putExtra(ANSWER_4, topics.get(i).getQuestions().get(0).getAnswer(3));
+        intent.putExtra(CORRECT_ANSWER, topics.get(i).getQuestions().get(0).getRightAnswer());
         startActivity(intent);
       }
     });
