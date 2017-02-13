@@ -39,7 +39,11 @@ public class Question {
     return this.answersList.get(num);
   }
 
-  public int getAnswer() {
+  public List<String> getAnswers() {
+    return this.answersList;
+  }
+
+  public int getRightAnswer() {
     return this.answer;
   }
 

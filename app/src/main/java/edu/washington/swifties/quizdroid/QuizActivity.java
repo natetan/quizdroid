@@ -19,13 +19,11 @@ public class QuizActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_quiz);
 
-    String subject = getIntent().getStringExtra("SUBJECT");
-    String desc = getIntent().getStringExtra("DESC");
+    String subject = getIntent().getStringExtra(MainActivity.SUBJECT);
+    String desc = getIntent().getStringExtra(MainActivity.DESC);
 
     TextView subjectTextView = (TextView) findViewById(R.id.subjectTextView);
     subjectTextView.setText(subject);
-
-
 
     display = new DescFragment();
     Bundle bundle = new Bundle();
