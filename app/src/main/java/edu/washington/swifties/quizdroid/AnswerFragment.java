@@ -17,6 +17,8 @@ import android.widget.TextView;
 public class AnswerFragment extends Fragment {
   private Button nextPageButton;
   private TextView resultTextView, correctAnswerTextView, answerChosenTextView;
+  private boolean isRight;
+  private String result = "INCORRECT";
 
 
   public AnswerFragment() {
@@ -30,12 +32,22 @@ public class AnswerFragment extends Fragment {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_answer, container, false);
 
-    resultTextView = (TextView) view.findViewById(R.id.resultTextView);
-    correctAnswerTextView = (TextView) view.findViewById(R.id.correctAnswerTextView);
+    isRight = getArguments().getBoolean(QuestionFragment.IS_RIGHT);
+    final String correctAnswerText = getArguments().getString(QuestionFragment.CORRECT_ANSWER_TEXT);
+    final String selectedAnswerText = getArguments().getString(QuestionFragment.SELECTED_ANSWER);
 
-    String answerSelected = getArguments().getString(QuestionFragment.SELECTED_ANSWER);
+    if (isRight) {
+      result = "CORRECT";
+    }
+
+    resultTextView = (TextView) view.findViewById(R.id.resultTextView);
+    resultTextView.setText(result);
+
+    correctAnswerTextView = (TextView) view.findViewById(R.id.correctAnswerTextView);
+    correctAnswerTextView.setText("Correct answer: " + correctAnswerText);
+
     answerChosenTextView = (TextView) view.findViewById(R.id.answerChosenTextView);
-    answerChosenTextView.setText(answerSelected);
+    answerChosenTextView.setText("You said: " + selectedAnswerText);
 
     nextPageButton = (Button) view.findViewById(R.id.nextPageButton);
     nextPageButton.setOnClickListener(new View.OnClickListener() {

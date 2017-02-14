@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -24,8 +23,12 @@ public class QuestionFragment extends Fragment {
   private TextView questionTextView;
   private Button submitButton;
   private int selectedAnswer;
+  private String selectedAnswerText;
+  private boolean isRight = false;
 
   public static final String SELECTED_ANSWER = "selected_answer";
+  public static final String IS_RIGHT = "is_right";
+  public static final String CORRECT_ANSWER_TEXT = "correct_answer_text";
 
   public QuestionFragment() {
     // Required empty public constructor
@@ -52,6 +55,12 @@ public class QuestionFragment extends Fragment {
         answer1, answer2, answer3, answer4
     };
 
+    choices = (RadioGroup) view.findViewById(R.id.choices);
+
+    for (int i = 0; i < choices.getChildCount(); i++) {
+      ((RadioButton) choices.getChildAt(i)).setText(answers[i]);
+    }
+
     submitButton = (Button) view.findViewById(R.id.submitButton);
     submitButton.setVisibility(View.INVISIBLE);
     submitButton.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +68,21 @@ public class QuestionFragment extends Fragment {
       public void onClick(View view) {
         Fragment next = new AnswerFragment();
 
+        String correctAnswerText = ((RadioButton) choices.getChildAt(rightAnswer)).getText().toString();
+
         Bundle bundle = new Bundle();
-        bundle.putInt(SELECTED_ANSWER, selectedAnswer);
+        bundle.putString(MainActivity.QUESTION, question);
+        bundle.putString(SELECTED_ANSWER, selectedAnswerText);
+        bundle.putString(CORRECT_ANSWER_TEXT, correctAnswerText);
+
+        Log.d("QUESTIONFRAG", "RIGHT ANSWER QF: " + rightAnswer);
+        Log.d("QUESTIONFRAG", "SELECTED ANSWER: " + selectedAnswer);
+        if (rightAnswer == selectedAnswer) {
+          isRight = true;
+        }
+
+        bundle.putBoolean(IS_RIGHT, isRight);
+
         next.setArguments(bundle);
 
         FragmentManager fm = getActivity().getFragmentManager();
@@ -71,12 +93,6 @@ public class QuestionFragment extends Fragment {
       }
     });
 
-    choices = (RadioGroup) view.findViewById(R.id.choices);
-
-    for (int i = 0; i < choices.getChildCount(); i++) {
-      ((RadioButton) choices.getChildAt(i)).setText(answers[i]);
-    }
-
     choices.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -85,8 +101,8 @@ public class QuestionFragment extends Fragment {
         int id = choices.getCheckedRadioButtonId();
         // Gets the actual radio button that is clicked (so we can grab text)
         RadioButton rb = (RadioButton) view.findViewById(id);
-        selectedAnswer = i;
-        Log.d("QuestionFragment", "QUESTION FRAG RADIO INDEX: " + selectedAnswer);
+        selectedAnswerText = rb.getText().toString();
+        selectedAnswer = choices.indexOfChild(view.findViewById(choices.getCheckedRadioButtonId()));
       }
     });
 
