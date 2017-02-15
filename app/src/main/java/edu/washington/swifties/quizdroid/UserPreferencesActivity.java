@@ -1,13 +1,26 @@
 package edu.washington.swifties.quizdroid;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class UserPreferencesActivity extends Activity {
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
+
+public class UserPreferencesActivity extends PreferenceActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_user_preferences);
+    getFragmentManager().beginTransaction().replace(android.R.id.content,
+        new MyPreferenceFragment()).commit();
   }
+
+  public static class MyPreferenceFragment extends PreferenceFragment {
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      addPreferencesFromResource(R.xml.preferences);
+    }
+  }
+
 }
+
