@@ -3,6 +3,8 @@ package edu.washington.swifties.quizdroid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,5 +62,22 @@ public class MainActivity extends Activity {
         startActivity(intent);
       }
     });
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu, menu);
+    return true;
+  }
+
+  /**
+   * react to the user tapping/selecting an options menu item
+   */
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    startActivity(new Intent(MainActivity.this, UserPreferencesActivity.class));
+    return true;
   }
 }
