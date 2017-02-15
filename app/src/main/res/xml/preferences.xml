@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+  <EditTextPreference android:title="Dataset"
+                      android:key="url"
+                      android:summary="Please provide a valid url for your questions"></EditTextPreference>
+  <EditTextPreference android:title="Updates"
+                      android:summary="Please provide an interval for how often to check updates in minutes"
+                      android:key="applicationUpdates" />
 </PreferenceScreen>
